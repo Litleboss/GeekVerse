@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alura Album - Copa do Mundo Tech</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <!-- Style -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Sound Control -->
+    <button id="sound-toggle" class="sound-btn" aria-label="Alternar som">
+        <svg class="sound-icon-on" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor"
+                d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.85 14,18.71V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16C15.5,15.29 16.5,13.77 16.5,12M3,9V15H7L12,20V4L7,9H3Z" />
+        </svg>
+        <svg class="sound-icon-off hidden" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor"
+                d="M12,4L9.91,6.09L12,8.18M4.27,3L3,4.27L7.73,9H3V15H7L12,20V13.27L16.25,17.5C15.58,18 14.83,18.4 14,18.71V20.77C15.38,20.44 16.63,19.78 17.7,18.9L20.73,21.93L22,20.66L4.27,3M14,3.23V5.29C14.73,5.5 15.43,5.83 16.07,6.26L14.59,7.74C14.41,7.65 14.21,7.58 14,7.54V9.54L19,14.54C19,13.7 19,12.85 19,12C19,7.72 16,4.14 14,3.23M16.5,12C16.5,11.2 16.1,10.5 15.5,10.05L14,11.55V12.45L15.46,13.9C15.48,13.28 16.5,12.62 16.5,12Z" />
+        </svg>
+    </button>
+
+    <!-- Navigation Arrows -->
+    <button id="btn-prev" class="nav-btn nav-btn-left" aria-label="Página Anterior">
+        <svg viewBox="0 0 24 24" width="36" height="36">
+            <path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
+        </svg>
+    </button>
+    <button id="btn-next" class="nav-btn nav-btn-right" aria-label="Próxima Página">
+        <svg viewBox="0 0 24 24" width="36" height="36">
+            <path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+        </svg>
+    </button>
+
+    <!-- Album Container -->
+    <div class="album-viewport" id="album-viewport">
+        <div class="flip-book" id="book">
+
+            <!-- PAGINA 0: CAPA -->
+            <div class="page page-cover" data-density="hard">
+                <div class="page-content cover-content">
+                    <div class="cover-header">
+                        <span class="cover-seal">COLEÇÃO OFICIAL</span>
+                    </div>
+                    <div class="cover-body">
+                        <h1 class="cover-title glitch" data-text="ALURA">ALURA</h1>
+                        <h2 class="cover-subtitle glitch" data-text="NERD">NERD</h2>
+                        <div class="cover-art">
+                            <div class="art-grid"></div>
+
+                            <!-- Floating Mini Cards Silhouette Collage -->
+                            <div class="mini-card mc-turing">
+                                <div class="mc-avatar">SF</div>
+                                <span class="mc-num">#01</span>
+                            </div>
+                            <div class="mini-card mc-guido">
+                                <div class="mc-avatar">HQ</div>
+                                <span class="mc-num">#06</span>
+                            </div>
+                            <div class="mini-card mc-jobs">
+                                <div class="mc-avatar">GM</div>
+                                <span class="mc-num">#11</span>
+                            </div>
+
+                            <!-- Central Glowing 3D Tech Sphere -->
+                            <div class="tech-sphere">
+                                <div class="sphere-core">
+                                    <svg class="art-logo" viewBox="0 0 24 24">
+                                        <path d="M12 2L2 22h20L12 2zm0 4l6.5 13h-13L12 6z" />
+                                    </svg>
+                                </div>
+                                <div class="sphere-ring ring-1"></div>
+                                <div class="sphere-ring ring-2"></div>
+                            </div>
+                        </div>
+                        <p class="cover-footer-text">A SELEÇÃO DE LENDAS DA CULTURA GEEK</p>
+                    </div>
+                    <div class="cover-footer">
+                        <span>2026 IMERSÃO JULHO</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGINA 1: DRAGON BALL -->
+            <div class="page page-left">
+                <div class="page-content">
+                    <div class="page-header">
+                        <span class="tech-badge badge-ia">DRAGON BALL</span>
+                        <h3 class="page-title">Universo Dragon Ball</h3>
+                    </div>
+
+                    <div class="stickers-grid">
+                        <div class="sticker-slot">
+                            <div class="slot-number">#01</div>
+                            <div class="slot-name">Goku</div>
+                            <div class="slot-role">Saiyajin criado na Terra e defensor do universo</div>
+                        </div>
+
+                        <div class="sticker-slot">
+                            <div class="slot-number">#02</div>
+                            <div class="slot-name">Vegeta</div>
+                            <div class="slot-role">Príncipe dos Saiyajins e eterno rival de Goku</div>
+                        </div>
+
+                        <div class="sticker-slot special-slot">
+                            <div class="slot-number">#03</div>
+                            <div class="slot-name">Gohan</div>
+                            <div class="slot-role">Guerreiro de enorme potencial e filho de Goku</div>
+                        </div>
+
+                        <div class="sticker-slot">
+                            <div class="slot-number">#04</div>
+                            <div class="slot-name">Piccolo</div>
+                            <div class="slot-role">Namekuseijin estrategista e mentor de Gohan</div>
+                        </div>
+
+                        <div class="sticker-slot">
+                            <div class="slot-number">#05</div>
+                            <div class="slot-name">Freeza</div>
+                            <div class="slot-role">Imperador galáctico e um dos maiores vilões da saga</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-footer">Pág. 1</div>
+    </div>
+    </div>
+
+    <!-- PAGINA 2: NARUTO -->
+    <div class="page page-right">
+        <div class="page-content">
+            <div class="page-header">
+                <span class="tech-badge badge-python">NARUTO</span>
+                <h3 class="page-title">Universo Naruto</h3>
+            </div>
+            <div class="stickers-grid">
+                <div class="sticker-slot">
+                    <div class="slot-number">#06</div>
+                    <div class="slot-name">Naruto Uzumaki</div>
+                    <div class="slot-role">Ninja determinado que nunca desistiu do sonho de ser Hokage.</div>
+                </div>
+
+                <div class="sticker-slot">
+                    <div class="slot-number">#07</div>
+                    <div class="slot-name">Sasuke Uchiha</div>
+                    <div class="slot-role">Último herdeiro dos Uchiha em busca de redenção.</div>
+                </div>
+                <div class="sticker-slot special-slot">
+                    <div class="slot-number">#08</div>
+                    <div class="slot-name">Kakashi Hatake</div>
+                    <div class="slot-role">O sexto Hokage e mestre do Sharingan.</div>
+                </div>
+                <div class="sticker-slot">
+                    <div class="slot-number">#09</div>
+                    <div class="slot-name">Sakura Haruno</div>
+                    <div class="slot-role">Mestra ninja médica e uma das maiores forças da Aliança shinobi.</div>
+                </div>
+                <div class="sticker-slot">
+                    <div class="slot-number">#10</div>
+                    <div class="slot-name">Itachi Uchiha</div>
+                    <div class="slot-role">Irmão mais velho de Sasuke e um dos ninjas mais poderosos da história.</div>
+                </div>
+            </div>
+            <div class="page-footer">Pág. 2</div>
+        </div>
+    </div>
+
+    <!-- PAGINA 3: ONE PIECE -->
+    <div class="page page-left">
+        <div class="page-content">
+            <div class="page-header">
+                <span class="tech-badge badge-db">ONE PIECE</span>
+                <h3 class="page-title">Universo One Piece</h3>
+            </div>
+            <div class="stickers-grid">
+                <div class="sticker-slot">
+                    <div class="slot-number">#11</div>
+                    <div class="slot-name">Monkey D. Luffy</div>
+                    <div class="slot-role">Capitão dos Chapéus de Palha em busca do One Piece.</div>
+                </div>
+                <div class="sticker-slot">
+                    <div class="slot-number">#12</div>
+                    <div class="slot-name">Roronoa Zoro</div>
+                    <div class="slot-role">Mestre espadachim e braço direito de Luffy.</div>
+                </div>
+                <div class="sticker-slot special-slot">
+                    <div class="slot-number">#13</div>
+                    <div class="slot-name">Sanji</div>
+                    <div class="slot-role">Cozinheiro e lutador guiado por seu código de honra.</div>
+                </div>
+                <div class="sticker-slot">
+                    <div class="slot-number">#14</div>
+                    <div class="slot-name">Nami</div>
+                    <div class="slot-role">Navegadora genial capaz de dominar qualquer rota.</div>
+                </div>
+                <div class="sticker-slot">
+                    <div class="slot-number">#15</div>
+                    <div class="slot-name">Shanks</div>
+                    <div class="slot-role">Imperador dos mares que inspira uma nova geração de piratas.</div>
+                </div>
+            </div>
+            <div class="page-footer">Pág. 3</div>
+        </div>
+    </div>
+
+    <!-- PAGINA 4: DEMON SLAYER -->
+    <div class="page page-right">
+        <div class="page-content">
+            <div class="page-header">
+                <span class="tech-badge badge-os">DEMON SLAYER</span>
+                <h3 class="page-title">Universo Demon Slayer</h3>
+            </div>
+            <div class="stickers-grid">
+                <div class="sticker-slot">
+                    <div class="slot-number">#16</div>
+                    <div class="slot-name">Tanjiro Kamado</div>
+                    <div class="slot-role">Protagonista e caçador de demônios em busca da cura para sua irmã.
+                    </div>
+                </div>
+                <div class="sticker-slot">
+                    <div class="slot-number">#17</div>
+                    <div class="slot-name">Nezuko Kamado</div>
+                    <div class="slot-role">Irmã de Tanjiro e uma poderosa oni que luta ao lado dele.</div>
+                </div>
+                <div class="sticker-slot special-slot">
+                    <div class="slot-number">#18</div>
+                    <div class="slot-name">Zenitsu Agatsuma</div>
+                    <div class="slot-role">O espadachim que só luta em seu estado adormecido.</div>
+                </div>
+                <div class="sticker-slot">
+                    <div class="slot-number">#19</div>
+                    <div class="slot-name">Inosuke Hashibira</div>
+                    <div class="slot-role">O poderoso e ágil espadachim com cabeça de javali.</div>
+                </div>
+                <div class="sticker-slot">
+                    <div class="slot-number">#20</div>
+                    <div class="slot-name">Muzan Kibutsuji</div>
+                    <div class="slot-role">O Rei dos Demônios e principal antagonista da série.</div>
+                </div>
+            </div>
+            <div class="page-footer">Pág. 4</div>
+        </div>
+    </div>
+
+    <!-- PAGINA 5: JUJUTSU KAISEN -->
+    <div class="page page-left">
+        <div class="page-content">
+            <div class="page-header">
+                <span class="tech-badge badge-brasil">JUJUTSU KAISEN</span>
+                <h3 class="page-title">Universo Jujutsu Kaisen</h3>
+            </div>
+            <div class="stickers-grid">
+                <div class="sticker-slot">
+                    <div class="slot-number">#21</div>
+                    <div class="slot-name">Satoru Gojo</div>
+                    <div class="slot-role">O feiticeiro jujutsu mais poderoso do mundo e sensei de Itadori.
+                    </div>
+                </div>
+                <div class="sticker-slot">
+                    <div class="slot-number">#22</div>
+                    <div class="slot-name">Yuji Itadori</div>
+                    <div class="slot-role">Protagonista e hospedeiro de Sukuna, o Rei das Maldições.</div>
+                </div>
+                <div class="sticker-slot special-slot">
+                    <div class="slot-number">#23</div>
+                    <div class="slot-name">Megumi Fushiguro</div>
+                    <div class="slot-role">O feiticeiro jujutsu com domínio sobre as Dez Sombras.</div>
+                </div>
+                <div class="sticker-slot">
+                    <div class="slot-number">#24</div>
+                    <div class="slot-name">Sukuna</div>
+                    <div class="slot-role">O Rei das Maldições</div>
+                </div>
+                <div class="sticker-slot">
+                    <div class="slot-number">#25</div>
+                    <div class="slot-name">Yuta Okkotsu</div>
+                    <div class="slot-role">Feiticeiro especial com imenso poder espiritual.</div>
+                </div>
+            </div>
+            <div class="page-footer">Pág. 5</div>
+        </div>
+    </div>
+
+    <!-- PAGINA 6: BLEACH -->
+    <div class="page page-right">
+        <div class="page-content">
+            <div class="page-header">
+                <span class="tech-badge badge-brasil">BLEACH</span>
+                <h3 class="page-title">Universo Bleach</h3>
+            </div>
+            <div class="stickers-grid">
+                <div class="sticker-slot">
+                    <div class="slot-number">#26</div>
+                    <div class="slot-name">Ichigo Kurosaki</div>
+                    <div class="slot-role">Ceifador substituto que protege vivos e almas.</div>
+                </div>
+                <div class="sticker-slot">
+                    <div class="slot-number">#27</div>
+                    <div class="slot-name">Rukia Kuchiki</div>
+                    <div class="slot-role">Ceifadora de Almas que mudou o destino de Ichigo.</div>
+                </div>
+                <div class="sticker-slot special-slot">
+                    <div class="slot-number">#28</div>
+                    <div class="slot-name">Aizen</div>
+                    <div class="slot-role">Gênio manipulador que desafia a Soul Society.</div>
+                </div>
+                <div class="sticker-slot">
+                    <div class="slot-number">#29</div>
+                    <div class="slot-name">Kenpachi Zaraki</div>
+                    <div class="slot-role">Capitão da 11ª Divisão, obcecado por batalhas.</div>
+                </div>
+                <div class="sticker-slot">
+                    <div class="slot-number">#30</div>
+                    <div class="slot-name">Byakuya Kuchiki</div>
+                    <div class="slot-role">Nobre capitão que luta com disciplina e elegância.</div>
+                </div>
+            </div>
+            <div class="page-footer">Pág. 6</div>
+        </div>
+    </div>
+
+    <!-- PAGINA 7: CONTRACAPA -->
+    <div class="page page-cover-back" data-density="hard">
+        <div class="page-content cover-back-content">
+            <div class="cover-back-header">
+                <h2>ALURA ALBUM</h2>
+            </div>
+            <div class="cover-back-body">
+                <div class="tech-logo-collage">
+                    <span>SCI-FI</span> • <span>HQS</span> • <span>GAMES & RPG</span> • <span>FANTASIA</span> •
+                    <span>CULTURA GEEK BR</span>
+                </div>
+                <p class="summary-text">
+                    O Alura Album é um tributo interativo à história e à paixão do universo nerd e geek.
+                    Reunindo os maiores mundos, ícones e mentes criativas que moldam a nossa imaginação.
+                </p>
+                <div class="barcode-container">
+                    <div class="barcode">
+                        <!-- Simulated barcode lines -->
+                        <div class="bar"></div>
+                        <div class="bar thin"></div>
+                        <div class="bar"></div>
+                        <div class="bar thick"></div>
+                        <div class="bar thin"></div>
+                        <div class="bar"></div>
+                        <div class="bar thick"></div>
+                        <div class="bar"></div>
+                        <div class="bar thin"></div>
+                        <div class="bar thick"></div>
+                    </div>
+                    <span class="barcode-number">9 788575 228494</span>
+                </div>
+            </div>
+            <div class="cover-back-footer">
+                <span>Imersão Julho • Alura • 2026</span>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    </div>
+
+    <!-- Page Flip Library -->
+    <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+    <!-- Logic -->
+    <script src="app.js"></script>
+</body>
+
+</html>
