@@ -1,19 +1,24 @@
 @echo off
 title GeekVerse Launcher
 
+cd /d "%~dp0"
+
 echo ===============================
-echo      INICIANDO GEEKVERSE
+echo       INICIANDO GEEKVERSE
 echo ===============================
 echo.
 
-start cmd /k "cd Backend && .venv\Scripts\Activate && python -m uvicorn main:app --reload"
+echo Iniciando Backend...
+start "GeekVerse Backend" cmd /k "cd /d "%~dp0Backend" && ".venv\Scripts\python.exe" -m uvicorn main:app --reload"
 
-timeout /t 3 >nul
+timeout /t 3 /nobreak >nul
 
-start cmd /k "cd Frontend && python -m http.server 5500"
+echo Iniciando Frontend...
+start "GeekVerse Frontend" cmd /k "cd /d "%~dp0Frontend" && python -m http.server 5500"
 
-timeout /t 2 >nul
+timeout /t 3 /nobreak >nul
 
-start http://127.0.0.1:5500
+echo Abrindo o navegador...
+start "" "http://127.0.0.1:5500"
 
 exit
