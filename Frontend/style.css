@@ -14,8 +14,12 @@
 }
 
 body {
-  background-color: var(--color-new-black);
-  background-image: radial-gradient(circle at center, var(--color-deep-blue) 0%, var(--color-blue-universe) 60%, var(--color-new-black) 100%);
+  background-color: #05030d;
+  background-image:
+    radial-gradient(circle at 50% 38%, rgba(111, 44, 255, 0.30) 0%, transparent 30%),
+    radial-gradient(circle at 18% 18%, rgba(35, 82, 255, 0.16) 0%, transparent 24%),
+    radial-gradient(circle at 82% 78%, rgba(125, 45, 255, 0.14) 0%, transparent 26%),
+    linear-gradient(145deg, #05030d 0%, #07113a 48%, #020207 100%);
   color: var(--color-new-black);
   font-family: 'Inter', sans-serif;
   min-height: 100vh;
@@ -24,6 +28,42 @@ body {
   align-items: center;
   overflow: hidden;
   position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.55) 0 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(180, 130, 255, 0.45) 0 1px, transparent 1.5px);
+
+  background-size:
+    72px 72px,
+    118px 118px;
+
+  background-position:
+    0 0,
+    35px 22px;
+
+  opacity: 0.28;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  background:
+    radial-gradient(ellipse at center,
+      transparent 42%,
+      rgba(0, 0, 0, 0.28) 75%,
+      rgba(0, 0, 0, 0.62) 100%);
 }
 
 /* Sound & Control UI */
@@ -95,6 +135,8 @@ body {
 /* Album Layout Container */
 .album-viewport {
   position: relative;
+  z-index: 1;
+
   width: 1100px;
   height: 800px;
   display: flex;
@@ -1134,4 +1176,166 @@ body.dragging * {
     width: 40px;
     height: 40px;
   }
+}
+
+/* =========================================
+   MICROANIMAÇÕES GEEKVERSE
+   ========================================= */
+
+/* Movimento suave das figurinhas */
+.sticker-slot:has(.sticker-img) {
+  cursor: pointer;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+/* Efeito ao passar o mouse */
+.sticker-slot:has(.sticker-img):hover {
+  transform: translateY(-5px) scale(1.025);
+
+  border-color: #8b5cf6 !important;
+
+  box-shadow:
+    0 10px 24px rgba(76, 29, 149, 0.38),
+    0 0 0 2px rgba(139, 92, 246, 0.75),
+    0 0 20px rgba(139, 92, 246, 0.55);
+
+  z-index: 5;
+}
+
+
+/* Zoom discreto apenas na imagem */
+.sticker-img {
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.sticker-slot:has(.sticker-img):hover .sticker-img {
+  transform: scale(1.035);
+  filter: brightness(1.06) saturate(1.05);
+}
+
+/* O nome sobe um pouco e fica mais nítido */
+.sticker-slot:has(.sticker-img) .slot-name {
+  transition:
+    transform 0.25s ease,
+    text-shadow 0.25s ease;
+}
+
+.sticker-slot:has(.sticker-img):hover .slot-name {
+  transform: translateY(-2px);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
+}
+
+/* Respeita usuários que preferem menos movimento */
+@media (prefers-reduced-motion: reduce) {
+
+  .sticker-slot,
+  .sticker-img,
+  .slot-name {
+    transition: none !important;
+  }
+
+  .sticker-slot:hover,
+  .sticker-slot:hover .sticker-img,
+  .sticker-slot:hover .slot-name {
+    transform: none !important;
+  }
+}
+
+/* Destaque especial dos protagonistas */
+.sticker-slot.special-slot:has(.sticker-img):hover {
+  transform: translateY(-7px) scale(1.035);
+
+  border-color: #f7c948 !important;
+
+  box-shadow:
+    0 14px 30px rgba(76, 29, 149, 0.42),
+    0 0 0 2px rgba(247, 201, 72, 0.85),
+    0 0 24px rgba(139, 92, 246, 0.65),
+    0 0 34px rgba(247, 201, 72, 0.28);
+
+  z-index: 10;
+}
+
+.sticker-slot.special-slot:has(.sticker-img):hover .sticker-img {
+  transform: scale(1.05);
+  filter:
+    brightness(1.09) saturate(1.08) contrast(1.03);
+}
+
+/* =========================================
+   EFEITO PREMIUM DE VIRADA DE PÁGINA
+   ========================================= */
+
+/* Suaviza o livro inteiro */
+.album-view {
+  perspective: 1800px;
+}
+
+/* Sombra base das páginas */
+.page {
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.22),
+    0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* Cria profundidade no encontro das páginas */
+.page-left::after,
+.page-right::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 34px;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.page-left::after {
+  right: 0;
+  background: linear-gradient(to left,
+      rgba(0, 0, 0, 0.16),
+      rgba(0, 0, 0, 0.05),
+      transparent);
+}
+
+.page-right::before {
+  left: 0;
+  background: linear-gradient(to right,
+      rgba(0, 0, 0, 0.16),
+      rgba(0, 0, 0, 0.05),
+      transparent);
+}
+
+/* Sombra dinâmica aplicada pela biblioteca durante a virada */
+.stf__item {
+  transition: filter 0.35s ease;
+}
+
+.stf__item.--flipping,
+.stf__item[style*="transform"] {
+  filter:
+    drop-shadow(0 14px 18px rgba(0, 0, 0, 0.32)) drop-shadow(0 0 10px rgba(76, 29, 149, 0.14));
+}
+
+/* Botões também respondem suavemente */
+.nav-arrow {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+.nav-arrow:hover {
+  transform: scale(1.08);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.22),
+    0 0 14px rgba(76, 29, 149, 0.28);
+  filter: brightness(1.08);
+}
+
+.nav-arrow:active {
+  transform: scale(0.96);
 }
